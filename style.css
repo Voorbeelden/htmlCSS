@@ -1,0 +1,256 @@
+:root {
+	/* Design tokens - the whole page's look flows from these, nothing
+	   below this block is a hardcoded hex value or px size. */
+	--color-bg: #0b1230;
+	--color-surface: #131b3f;
+	--color-border: rgba(255, 255, 255, 0.1);
+	--color-text: #e7e9f5;
+	--color-text-muted: #a3a8c4;
+	--color-accent: #4ade80;
+	--color-accent-contrast: #06210f;
+
+	--radius-md: 14px;
+	--radius-lg: 22px;
+	--shadow-card: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+
+	--space-2: 0.5rem;
+	--space-3: 1rem;
+	--space-4: 1.5rem;
+	--space-6: 3rem;
+
+	--font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+	color-scheme: dark;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-body);
+	background: var(--color-bg);
+	color: var(--color-text);
+	line-height: 1.5;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* ================= NAVIGATION ================= */
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--space-3) var(--space-4);
+	max-width: 72rem;
+	margin-inline: auto;
+}
+
+.nav__brand {
+	font-weight: 700;
+	font-size: 1.25rem;
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+.nav__brand span {
+	color: var(--color-accent);
+}
+
+.nav__menu {
+	display: flex;
+	gap: var(--space-4);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav__menu a {
+	color: var(--color-text-muted);
+	text-decoration: none;
+	transition: color 0.15s ease;
+}
+
+.nav__menu a:hover,
+.nav__menu a:focus-visible {
+	color: var(--color-text);
+}
+
+/* Real focus rings, never suppressed - just styled to match the theme. */
+a:focus-visible,
+button:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 3px;
+}
+
+.nav__toggle {
+	display: none;
+	flex-direction: column;
+	gap: 4px;
+	background: none;
+	border: none;
+	padding: var(--space-2);
+	cursor: pointer;
+}
+
+.nav__toggle-bar {
+	width: 22px;
+	height: 2px;
+	background: var(--color-text);
+	border-radius: 1px;
+}
+
+/* ================= HERO ================= */
+.hero {
+	max-width: 44rem;
+	margin: var(--space-6) auto;
+	padding: 0 var(--space-4);
+	text-align: center;
+}
+
+.hero h1 {
+	/* Fluid type: scales smoothly between 1.9rem and 3rem depending on
+	   viewport width, instead of jumping at fixed breakpoints. */
+	font-size: clamp(1.9rem, 4vw + 1rem, 3rem);
+	line-height: 1.15;
+	margin-bottom: var(--space-3);
+}
+
+.hero p {
+	color: var(--color-text-muted);
+	margin-bottom: var(--space-4);
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	border-radius: 999px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: transform 0.15s ease;
+}
+
+.btn--primary {
+	background: var(--color-accent);
+	color: var(--color-accent-contrast);
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.btn:hover {
+		transform: none;
+	}
+}
+
+/* ================= SERVICES / CARD GRID ================= */
+.services {
+	max-width: 72rem;
+	margin: var(--space-6) auto;
+	padding: 0 var(--space-4);
+}
+
+.services h2 {
+	text-align: center;
+	margin-bottom: var(--space-4);
+}
+
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: var(--space-4);
+}
+
+.card {
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	padding: var(--space-4);
+	box-shadow: var(--shadow-card);
+
+	/* Small entrance animation - opacity/transform only (compositor-only
+	   properties, never triggers layout), and skipped entirely below for
+	   anyone who has reduced motion turned on. */
+	animation: fade-in-up 0.5s ease-out both;
+}
+
+.card h3 {
+	margin-top: 0;
+	font-size: 1.05rem;
+}
+
+.card p {
+	color: var(--color-text-muted);
+	font-size: 0.95rem;
+	margin-bottom: 0;
+}
+
+.card code {
+	background: rgba(255, 255, 255, 0.08);
+	padding: 0.1em 0.4em;
+	border-radius: 6px;
+	font-size: 0.85em;
+}
+
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.card {
+		animation: none;
+	}
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+	text-align: center;
+	color: var(--color-text-muted);
+	padding: var(--space-6) var(--space-4);
+	font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVE NAV ================= */
+@media (max-width: 40rem) {
+	.nav__toggle {
+		display: flex;
+	}
+
+	.nav__menu {
+		position: absolute;
+		inset-inline: 0;
+		top: 100%;
+		flex-direction: column;
+		gap: 0;
+		background: var(--color-surface);
+		border-bottom: 1px solid var(--color-border);
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.25s ease;
+	}
+
+	.nav__menu.is-open {
+		max-height: 12rem;
+	}
+
+	.nav__menu a {
+		display: block;
+		padding: var(--space-3) var(--space-4);
+	}
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Web Fundamentals — small HTML/CSS component demo</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header class="site-header">
+		<nav class="nav" aria-label="Main">
+			<a href="#" class="nav__brand">Studio<span>.</span></a>
+
+			<button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+				<span class="visually-hidden">Toggle menu</span>
+				<span class="nav__toggle-bar"></span>
+				<span class="nav__toggle-bar"></span>
+				<span class="nav__toggle-bar"></span>
+			</button>
+
+			<ul class="nav__menu" id="navMenu">
+				<li><a href="#services">Services</a></li>
+				<li><a href="#work">Work</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero">
+			<h1>Websites built to be maintained,<br>not just launched.</h1>
+			<p>A small, deliberately plain example of hand-written HTML and CSS — no framework, no
+				build step, just semantic markup and a design-token-driven stylesheet.</p>
+			<a href="#services" class="btn btn--primary">See what's included</a>
+		</section>
+
+		<section class="services" id="services" aria-labelledby="services-heading">
+			<h2 id="services-heading">What's in this little demo</h2>
+
+			<div class="card-grid">
+				<article class="card">
+					<h3>Fluid type &amp; spacing</h3>
+					<p>Headings scale smoothly between a minimum and maximum size using
+						<code>clamp()</code>, instead of jumping between fixed sizes at breakpoints.</p>
+				</article>
+
+				<article class="card">
+					<h3>Design tokens, not magic numbers</h3>
+					<p>Every color, radius and shadow lives once as a CSS custom property on
+						<code>:root</code>, so the whole page's look can change from a handful of
+						variables.</p>
+				</article>
+
+				<article class="card">
+					<h3>A real, accessible nav toggle</h3>
+					<p>The mobile menu button updates <code>aria-expanded</code>, is reachable and
+						operable by keyboard, and the menu itself is a real, focusable list — not a
+						div soup.</p>
+				</article>
+
+				<article class="card">
+					<h3>Respects reduced motion</h3>
+					<p>The subtle entrance animation on these cards is skipped entirely for anyone
+						whose system has <code>prefers-reduced-motion</code> turned on.</p>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer" id="contact">
+		<p>Small, framework-free demo component — part of a larger portfolio.</p>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+</html>
